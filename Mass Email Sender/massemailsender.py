@@ -2,6 +2,7 @@ import csv
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import time
 
 #---------------CONFIG-----------------------
 CSV_FILE = "recipients.csv"
@@ -20,6 +21,8 @@ BODY
 SIGNOFF,
 NAME
 """
+
+DELAY_BETWEEN_EMAILS = 2
 
 #parses through the given csv file and returns a list of recipients
 def load_recipients(filename):
@@ -52,6 +55,7 @@ def main():
             send_email(recipient)
         except Exception as e:
             print(f"Error sending to {recipient['email']}: {e}")
+        time.sleep(DELAY_BETWEEN_EMAILS)
 
 if __name__ == "__main__":
     main()
