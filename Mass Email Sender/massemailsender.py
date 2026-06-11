@@ -37,7 +37,7 @@ def send_email(recipient):
     msg["To"] = recipient['email']
     msg["Subject"] = SUBJECT
 
-    body = BODY_TEMPLATE.format(name=recipient.get("get", "there"))
+    body = BODY_TEMPLATE.format(name=recipient.get("name", "there"))
     msg.attach(MIMEText(body, "plain"))
 
     with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
